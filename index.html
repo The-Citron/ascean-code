@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ascean Code</title>
+
+    <script defer>
+        window.onload = () => {
+            const dict = {
+                "a": "~", "b": "`", "c": ">",
+                "d": "@", "e": "#", "f":"$",
+                "g":"%", "h":"^", "i":"&",
+                "j":"*", "k":"(", "l":")",
+                "m":"_", "n":"-", "o": "+",
+                "p":"=", "q": "{", "r":"[", "s": "}",
+                "t": "]", "u": "|", "v": "\\",
+                "w":":", "x":";", "y":"\"",
+                "z":"'", ".":"!", "!": "?",
+                "?": ".", " ": "<", "Ç":"№",
+                "Ş":"⩵", ",":"⨺", ":":"⁋"
+            }
+            const reverseDict = {}
+
+            for(var propName in dict) {
+                reverseDict[dict[propName]] = propName;
+            }
+
+            const text = document.getElementById("text");
+            const clicker = document.getElementById("encrypt_btn");
+            clicker.addEventListener("click", (e) => {
+                const txt = text.value.toLowerCase();
+                let content = ""
+                for (let index = 0; index < txt.length; index++) {
+                    const element = txt.charAt(index);
+                    content += dict[element];
+                }
+                document.getElementById("out").value = content.split("").reverse().join("");
+            })
+            
+            const clicker2 = document.getElementById("decrypt_btn");
+            clicker2.addEventListener("click", (e) => {
+                const txt = text.value;
+                let content = ""
+                for (let index = 0; index < txt.length; index++) {
+                    const element = txt.charAt(index);
+                    content += reverseDict[element];
+                }
+                document.getElementById("out").value = content.split("").reverse().join("");
+            })
+        }
+
+    </script>
+</head>
+<body>
+    
+    <h1>Ascean Code Encrypt/Decryptor</h1>
+
+    <h5>Input</h5>
+    <input id="text" style="width: 1000px;" type="text">
+    <h5>Output</h5>
+    <input id="out" style="width: 1000px;" type="text">
+    <br>
+    <br>
+    <button id="encrypt_btn"> Encrypt </button>
+    <button id="decrypt_btn"> Decrypt </button>
+
+</body>
+</html>
